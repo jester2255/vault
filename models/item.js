@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes){
 	var Item = sequelize.define("User", {
 		name:{
 			type:DataTypes.String
-			,allowNull: false;
+			,allowNull: false
 			,validate: {
 				len:[1]
 			}
@@ -40,3 +40,4 @@ module.exports = function(sequelize, DataTypes){
 			}
 		});
 	}
+}
