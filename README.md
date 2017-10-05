@@ -5,8 +5,9 @@ An app that allows users to maintain a personal list of personal possessions, wh
 	Team V
 
 ## Team Members:
-	Ryan Thatcher
-	Tabitha Love
-	Rudy Concepcion
-	Philip Dunn
-	JT Barrick
+* Ryan Thatcher
+* Tabitha Love
+* Rudy Concepcion
+* Philip Dunn
+* JT Barrick
+
