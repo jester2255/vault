@@ -17,11 +17,22 @@ module.exports = function(sequelize, DataTypes){
 		// }
 	});
 
+	// User.associate = function(models){
+	// 	User.hasMany(models.Item,{
+
+	// 	});
+	// }
+
+	// User.associate = function(models){
+	// 	User.hasMany(models.Transaction,{
+			
+	// 	});
+	// }
+
 	User.associate = function(models){
-		User.hasMany(models.Item,{
+		User.hasMany(models.Category,{
 			
 		});
 	}
-
 	return User;
 }

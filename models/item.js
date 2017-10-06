@@ -14,6 +14,7 @@ module.exports = function(sequelize, DataTypes){
 		lent_out: {
 			type: DataTypes.BOOLEAN
 			,allowNull: false
+			,defaultValue: false
 		},
 		//WhoAudit fields below. 
 		modifiedby_user_id:{
@@ -27,12 +28,16 @@ module.exports = function(sequelize, DataTypes){
 	});
 
 	Item.associate = function(models){
-		Item.belongsTo(models.User, {
-			foreignKey: {
-				allowNull: false
-			}
-		});
+		Item.hasmany(models.Transaction,{});
 	}
+
+	// Item.associate = function(models){
+	// 	Item.belongsTo(models.User, {
+	// 		foreignKey: {
+	// 			allowNull: false
+	// 		}
+	// 	});
+	// }
 
 	Item.associate = function(models){
 		Item.belongsTo(models.Category, {

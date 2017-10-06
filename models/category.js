@@ -21,6 +21,14 @@ module.exports = function(sequelize, DataTypes){
 		Category.hasMany(models.Item,{});
 	}
 
+	Category.associate = function(models){
+		Category.belongsTo(models.User, {
+			foreignKey: {
+				allowNull: false
+			}
+		});
+	}
+
 	return Category;
 }
 
