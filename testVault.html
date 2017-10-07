@@ -9,7 +9,6 @@
 <nav class="navbar navbar-light bg-light">
   <span class="h1" class="navbar-brand mb-0">Open Vault</span>
   <!-- USERNAME FROM DB ? -->
-  <p></p>
   <a href="#">Logout</a>
 </nav>
 <!-- Body -->
@@ -21,7 +20,10 @@
 		<div class="col">
 		</div>
 		<div class="col-3">
-			<!-- Button trigger modal -->
+			<!-- Button add category -->
+			<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#addCategoryModal">Add Category
+			</button>
+			<!-- Button add item -->
 			<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addItemModal">Add to Vault
 			</button>
 		</div>
@@ -29,9 +31,68 @@
 	<!-- LENT OUT TRUE FROM DB -->
 	<div class="row">
 	</div>
+<!-- ========================================================== -->
+	<hr id="lineBreak">
+<!-- ========================================================== -->
+	<div class="row">
+		<div class="col-4">
+			<h3>Lend an Item:</h3>
+		</div>
+	</div>
+	<!-- {{{#each Category}}} -->
+	<a data-toggle="collapse" data-target="#cat1" href="#cat1">
+							<!-- ^^^ change target and href -->
+	  	<h5>Category</h5>
+	</a>
+	<div class="collapse" id="cat1">
+						<!-- ^^^ change id -->
+		<!-- list each item in the category -->
+		<div class="card" style="width: 20rem;">
+		  <ul class="list-group list-group-flush">
+		  <!-- {{{#each this.Item?}}} -->
+		  	<!-- {{{#unless this.Item.lent_out}}} -->
+		    <li class="list-group-item">
+		    	<div class="row">
+			    	<div class="col">
+			    		<p>Item</p>
+			    	</div>
+			    	<div class="col">
+				    	<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#lendItemModal">Lend Item
+				    	</button>
+				    </div>
+				</div>
+		    </li>
+		  <!-- {{{/each}}} -->
+		  </ul>
+		</div>
+	</div>
+	<!-- {{{/each}}} -->
+
 </div>
 
 
+<!-- Modal ADD CATEGORY-->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCategoryModalHeading">Add a Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<!-- item input -->
+      	<form action="/category" method="POST" id="newCategoryForm">
+			<p>Enter the name of the category:</p>
+			<input type="text" name="newCategoryName" id="newCategoryName" placeholder=" Category Name..." required>
+			<br><hr>
+			<button id="addCategory" type="submit" class="btn btn-primary">Submit</button>
+		</form> 
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Modal ADD ITEM-->
 <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -45,31 +106,52 @@
       </div>
       <div class="modal-body">
       	<!-- item input -->
-      	<form action="/" method="POST" id="newItemForm">
+      	<form action="/add" method="POST" id="newItemForm">
       		<p>Please select a category:</p>
-					<select>
-						<option value="" disabled>Categories</option>
-	<!-- GRAB CATEGORIES FROM DB -->
-					  <option value="newCategory">New Category</option>
-					</select>
-					<br><br>
-					<!--  -->
-					<p>Enter the name of the item:</p>
-					<input type="text" name="newItemName" id="newItemName" placeholder="Item Name..." required>
-					<br><br>
-					<!--  -->
-					<p>Enter a description:</p>
-					<textarea name="newItemDescribe" id="newItemDescribe" height="2em" width="2em"></textarea>
-				</form> 
-      </div>
-      <div class="modal-footer">
-      	<!-- item submit -->
-        <button id="addItem" type="submit" class="btn btn-primary">Submit</button>
+			<select required>
+				<option value="" disabled>Categories</option>
+				<!-- {{{#each Category}}} -->
+			  	<option value="newCategory">New Category</option>
+			  	<!-- {{{/each}}} -->
+			</select>
+			<br><br>
+			<!--  -->
+			<p>Enter the name of the item:</p>
+			<input type="text" name="newItemName" id="newItemName" placeholder=" Item Name..." required>
+			<br><br>
+			<!--  -->
+			<p>Enter a description:</p>
+			<textarea name="newItemDescribe" id="newItemDescribe" height="2em" width="2em"></textarea>
+			<br><hr>
+			<button id="addItem" type="submit" class="btn btn-primary">Submit</button>
+		</form> 
       </div>
     </div>
   </div>
 </div>
 
+<!-- Modal LEND ITEM-->
+<div class="modal fade" id="lendItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="lendItemModalHeading">Lend an Item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<!-- item input -->
+      	<form action="/lend" method="POST" id="lendItemForm">
+			<p>Enter the name of the person you are lending to:</p>
+			<input type="text" name="newLendee" id="newLendee" placeholder=" Name of Lendee..." required>
+			<br><hr>
+			<button id="lendItem" type="submit" class="btn btn-primary">Submit</button>
+		</form> 
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
