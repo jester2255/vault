@@ -18,37 +18,49 @@ $("#addCategory").on("click", function() {
 		name: $("#newCategoryName").val().trim()
 	}
     // ajax post
-    $.post("/addCategory", addItem, function(data) {
+    $.post("/addCategory", addCategory, function(data) {
         console.log(data + "category posted!");
     });
 });
 
-$("#lendItem").on("click", function() {
-	var lendItem = {
-		due_date: $("#dueDate").val().trim(),
-		type: "LEND",
-		item_condition: $("#itemCondition").val().trim(),
-		lendee: $("#newLendee").val().trim()
-	}
-    // ajax post
-    $.post("/lendItem", addItem, function(data) {
-        console.log(data + "lend posted!");
-    });
-});
-
-var returnItem = {
-
-}
 // GET
 //=====================================
 
 // UPDATE
 //=====================================
 $("#lendItem").on("click", function() {
-	
+	$.ajax({
+		url: "/lent_out",
+		type: "PUT",
+		data:{lent_out: true},
+		success: function(result) {
+			console.log(result);
+			var lendItem = {
+				due_date: $("#dueDate").val().trim(),
+				type: "LEND",
+				item_condition: $("#itemCondition").val().trim(),
+				lendee: $("#newLendee").val().trim()
+			}
+		    // ajax post
+		    $.post("/lendItem", lendItem, function(data) {
+		        console.log(data + "lend posted!");
+		    });
+		}
+	})
+})
+
+$("#returnItem").on("click", function() {
+	$.ajax({
+		url: "/return",
+		type: "PUT",
+		data:{lent_out: false},
+		success: function(result) {
+			console.log(result);
+		}
+	})
+
+
 })
 //=====================================
 //=====================================
 //=====================================
-
-
