@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "5522retsej",
-    "database": "vault_test_db",
-    "host": "127.0.0.1",
+    "username": "q7g7kpz0fz6sgrrr",
+    "password": "aptw30zknr3zkovn",
+    "database": "`j61eo8o93u8u54dq`",
+    "host": "ipobfcpvprjpmdo9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
 
     "dialect": "mysql"
   },
