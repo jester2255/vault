@@ -11,6 +11,7 @@
   <!-- USERNAME FROM DB ? -->
   <a href="#">Logout</a>
 </nav>
+<br>
 <!-- Body -->
 <div class="container">
 	<div class="row">
@@ -55,6 +56,9 @@
 		    	<div class="row">
 			    	<div class="col">
 			    		<p>Item</p>
+			    	</div>
+			    	<div class="col">
+			    		<p>Lendee</p>
 			    	</div>
 			    	<div class="col">
 				    	<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#lendItemModal">Lend Item
@@ -108,7 +112,7 @@
       	<!-- item input -->
       	<form action="/add" method="POST" id="newItemForm">
       		<p>Please select a category:</p>
-			<select required>
+			<select id="selectCategory" required>
 				<option value="" disabled>Categories</option>
 				<!-- {{{#each Category}}} -->
 			  	<option value="newCategory">New Category</option>
@@ -143,8 +147,12 @@
       <div class="modal-body">
       	<!-- item input -->
       	<form action="/lend" method="POST" id="lendItemForm">
-			<p>Enter the name of the person you are lending to:</p>
+      		<p>Enter the due date:<p>
+      		<input type="text" name="dueDate" id="dueDate" placeholder=" Due Date...">
+			<p>Name of the person you are lending to:</p>
 			<input type="text" name="newLendee" id="newLendee" placeholder=" Name of Lendee..." required>
+			<p>Condition of the item:</p>
+			<textarea name="itemCondition" id="itemCondition" placeholder=" Item Condition..."></textarea>
 			<br><hr>
 			<button id="lendItem" type="submit" class="btn btn-primary">Submit</button>
 		</form> 
