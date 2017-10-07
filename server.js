@@ -22,23 +22,52 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Static directory
-app.use(express.static("public"));
+
+// app.use(express.static("public"));
 
 // Routes
 // =============================================================
-//require("./routes/html-routes.js")(app);
-//require("./routes/author-api-routes.js")(app);
-//require("./routes/post-api-routes.js")(app);
-
+// require("./routes/html-routes.js")(app);
+// require("./routes/author-api-routes.js")(app);
+// require("./routes/post-api-routes.js")(app);
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-	// I used this to make sure I could get a connection without a database
-	//app.listen(PORT);
-	//console.log("listening on port: " + PORT);
-//==============================================================	
-//use this when we have the database up and running 
 db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
-});
+
+//TEST DATA ONLY
+  db.User.create({
+  	username: "RyanTest"
+  	,modifiedby_user_id:"root"
+  }).then(function(createResult){
+  	console.log("created a user");
+  });
+
+  db.Category.create({
+  	name:"DVDs"
+  	,modifiedby_user_id: "root"
+  	,UserId:1
+  }).then(function(createResult){
+  	console.log("created a Category");
+  });  
+
+  db.Item.create({
+  	name:"The Incredibles"
+  	,modifiedby_user_id: "root"
+  	,CategoryId:1
+  	,description: "DVD of the movie 'The Incredibles', two disc pack."
+  }).then(function(createResult){
+  	console.log("created an Item");
+  });
+
+  db.Transaction.create({
+  	type:"LEND"
+  	,item_condition:"pristine condition"
+  	,lendee:"Joe the Dirtbag"
+  	,modifiedby_user_id: "root"
+  	,ItemId:1
+  }).then(function(createResult){
+  	console.log("created a Category");
+  });

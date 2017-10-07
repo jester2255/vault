@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes){
-	var Item = sequelize.define("User", {
+	var Item = sequelize.define("Item", {
 		name:{
-			type:DataTypes.String
+			type:DataTypes.STRING
 			,allowNull: false
 			,validate: {
 				len:[1]
@@ -14,10 +14,11 @@ module.exports = function(sequelize, DataTypes){
 		lent_out: {
 			type: DataTypes.BOOLEAN
 			,allowNull: false
+			,defaultValue: false
 		},
 		//WhoAudit fields below. 
 		modifiedby_user_id:{
-			type:DataTypes.String
+			type:DataTypes.STRING
 			,allowNull: false
 		}//timestamps input automatically by Sequelize. 
 		// created_date:{
@@ -27,11 +28,16 @@ module.exports = function(sequelize, DataTypes){
 	});
 
 	Item.associate = function(models){
-		Item.belongsTo(models.User, {
-			foreignKey: {
-				allowNull: false
-			}
-		});
+		Item.hasmany(models.Transaction,{});
+	}
+
+	// Item.associate = function(models){
+	// 	Item.belongsTo(models.User, {
+	// 		foreignKey: {
+	// 			allowNull: false
+	// 		}
+	// 	});
+	// }
 
 	Item.associate = function(models){
 		Item.belongsTo(models.Category, {
@@ -40,4 +46,6 @@ module.exports = function(sequelize, DataTypes){
 			}
 		});
 	}
+
+	return Item;
 }
