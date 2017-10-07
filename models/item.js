@@ -28,18 +28,12 @@ module.exports = function(sequelize, DataTypes){
 	});
 
 	Item.associate = function(models){
-		Item.hasmany(models.Transaction,{});
-	}
-
-	// Item.associate = function(models){
-	// 	Item.belongsTo(models.User, {
-	// 		foreignKey: {
-	// 			allowNull: false
-	// 		}
-	// 	});
-	// }
-
-	Item.associate = function(models){
+		Item.hasMany(models.Transaction,{});
+		Item.belongsTo(models.User, {
+			foreignKey: {
+				allowNull: false
+			}
+		});
 		Item.belongsTo(models.Category, {
 			foreignKey: {
 				allowNull: false
