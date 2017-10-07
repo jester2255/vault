@@ -4,6 +4,7 @@
     "password": "password",
     "database": "vault_test_db",
     "host": "127.0.0.1",
+
     "dialect": "mysql"
   },
   "test": {
