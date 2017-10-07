@@ -1,12 +1,14 @@
+var moment = require("moment");
+
 module.exports = function(sequelize, DataTypes){
 	var Transaction = sequelize.define("Transaction", {
 		transaction_date: {
 			type: DataTypes.DATE
-			,defaultValue: sequelize.NOW
+			,defaultValue: moment().format('YYYY/MM/DD HH:mm:ss')
 		},
 		due_date: {
 			type: DataTypes.DATE
-			// ,defaultValue: sequelize.NOW + 700000000
+			,defaultValue: moment().add(7, 'days').format('YYYY/MM/DD HH:mm:ss')
 		},
 		type:{
 			type: DataTypes.ENUM
