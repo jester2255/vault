@@ -56,6 +56,7 @@ db.sequelize.sync({ force: true }).then(function() {
   db.Item.create({
   	name:"The Incredibles"
   	,modifiedby_user_id: "root"
+  	,UserId:1
   	,CategoryId:1
   	,description: "DVD of the movie 'The Incredibles', two disc pack."
   }).then(function(createResult){
@@ -67,6 +68,8 @@ db.sequelize.sync({ force: true }).then(function() {
   	,item_condition:"pristine condition"
   	,lendee:"Joe the Dirtbag"
   	,modifiedby_user_id: "root"
+  	,UserId:1
+  	,CategoryId:1
   	,ItemId:1
   }).then(function(createResult){
   	console.log("created a Category");

@@ -19,9 +19,7 @@ module.exports = function(sequelize, DataTypes){
 
 	Category.associate = function(models){
 		Category.hasMany(models.Item,{});
-	}
-
-	Category.associate = function(models){
+		Category.hasMany(models.Transaction);
 		Category.belongsTo(models.User, {
 			foreignKey: {
 				allowNull: false
