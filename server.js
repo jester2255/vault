@@ -62,6 +62,16 @@ db.sequelize.sync({ force: true }).then(function() {
   }).then(function(createResult){
   	console.log("created an Item");
   });
+  
+  db.Item.create({
+  	name:"Oceans 13"
+  	,modifiedby_user_id: "root"
+  	,UserId:1
+  	,CategoryId:1
+  	,description: "DVD of the movie 'Oceans 13'"
+  }).then(function(createResult){
+  	console.log("created an Item");
+  });
 
   db.Transaction.create({
   	type:"LEND"
@@ -73,13 +83,35 @@ db.sequelize.sync({ force: true }).then(function() {
   	,ItemId:1
   }).then(function(createResult){
   	console.log("created a Category");
-  }).then(function(){
-  	db.Item.findAll({
-  	include:[db.Transaction]
-  }).then(function(dbItem){
-  	console.log("*****************\nall items and transactions",dbItem[0].Transactions[0].dataValues.item_condition);
   });
+  db.Transaction.create({
+  	type:"RETURN"
+  	,item_condition:"quite good"
+  	,modifiedby_user_id: "root"
+  	,UserId:1
+  	,CategoryId:1
+  	,ItemId:1
+  }).then(function(createResult){
+  	console.log("created a Category");
+  });;
+  db.Transaction.create({
+  	type:"LEND"
+  	,item_condition:"scatched disc"
+  	,lendee:"Jill the cutie"
+  	,modifiedby_user_id: "root"
+  	,UserId:1
+  	,CategoryId:1
+  	,ItemId:2
+  }).then(function(createResult){
+  	console.log("created a Category");
   });
+  // .then(function(createResult){
+  // 	console.log("created a Category");
+  // }).then(function(){
+  // 	db.Item.findAll({
+  // 	include:[db.Transaction]
+  // }).then(function(dbItem){});
+  // });
 
   
 });

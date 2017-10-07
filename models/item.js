@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes){
 		//WhoAudit fields below. 
 		modifiedby_user_id:{
 			type:DataTypes.STRING
-			,allowNull: false
+			,defaultValue: "root"
 		}//timestamps input automatically by Sequelize. 
 		// created_date:{
 		// },
