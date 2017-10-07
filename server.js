@@ -73,5 +73,13 @@ db.sequelize.sync({ force: true }).then(function() {
   	,ItemId:1
   }).then(function(createResult){
   	console.log("created a Category");
+  }).then(function(){
+  	db.Item.findAll({
+  	include:[db.Transaction]
+  }).then(function(dbItem){
+  	console.log("*****************\nall items and transactions",dbItem[0].Transactions[0].dataValues.item_condition);
   });
+  });
+
+  
 });
