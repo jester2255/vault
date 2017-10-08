@@ -37,7 +37,7 @@ db.sequelize.sync({ force: true }).then(function() {
     console.log("App listening on PORT " + PORT);
   });
 
-	//TEST DATA ONLY
+/*	//TEST DATA ONLY
   db.User.create({
   	username: "RyanTest"
   	,modifiedby_user_id:"root"
@@ -113,5 +113,5 @@ db.sequelize.sync({ force: true }).then(function() {
   // }).then(function(dbItem){});
   // });
 
-  
+ */ 
 });
