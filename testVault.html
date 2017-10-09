@@ -48,20 +48,20 @@
 	<div class="collapse" id="cat1">
 						<!-- ^^^ change id -->
 		<!-- list each item in the category -->
-		<div class="card" style="width: 20rem;">
+		<div class="card" style="width: 70rem;">
 		  <ul class="list-group list-group-flush">
 		  <!-- {{{#each this.Item?}}} -->
 		  	<!-- {{{#unless this.Item.lent_out}}} -->
 		    <li class="list-group-item">
 		    	<div class="row">
-			    	<div class="col">
+			    	<div class="col-3">
 			    		<p>Item</p>
 			    	</div>
 			    	<div class="col">
-			    		<p>Lendee</p>
+			    		<p>Description</p>
 			    	</div>
-			    	<div class="col">
-				    	<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#lendItemModal">Lend Item
+			    	<div class="col-2">
+				    	<button type="button" class="btn btn-outline-danger text-right" data-toggle="modal" data-target="#lendItemModal">Lend Item
 				    	</button>
 				    </div>
 				</div>

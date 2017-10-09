@@ -33,37 +33,40 @@
 			<h3>Lend an Item:</h3>
 		</div>
 	</div>
-	<!-- {{{#each Category}}} -->
-	<a data-toggle="collapse" data-target="#cat1" href="#cat1">
+	{{{#each Category}}}
+	<a data-toggle="collapse" data-target="{{{this.id}}}" href="{{{this.id}}}">
 							<!-- ^^^ change target and href -->
-	  	<h5>Category</h5>
+	  	<h5>{{{this.name}}}</h5>
 	</a>
-	<div class="collapse" id="cat1">
+	<div class="collapse" id="{{{this.id}}}">
 						<!-- ^^^ change id -->
 		<!-- list each item in the category -->
-		<div class="card" style="width: 20rem;">
+		<div class="card" style="width: 70rem;">
 		  <ul class="list-group list-group-flush">
 		  <!-- {{{#each this.Item?}}} -->
+		  {{{#each this.Item}}}
 		  	<!-- {{{#unless this.Item.lent_out}}} -->
+		  	{{{#unless this.Item.lent_out}}}
 		    <li class="list-group-item">
 		    	<div class="row">
-			    	<div class="col">
-			    		<p>Item</p>
+			    	<div class="col-3">
+			    		<p>{{{this.Item.name}}}</p>
 			    	</div>
 			    	<div class="col">
-			    		<p>Lendee</p>
+			    		<p>{{{this.Item.description}}}</p>
 			    	</div>
-			    	<div class="col">
+			    	<div class="col-2">
 				    	<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#lendItemModal">Lend Item
 				    	</button>
 				    </div>
 				</div>
 		    </li>
-		  <!-- {{{/each}}} -->
+		    {{{/unless}}}
+		  {{{/each}}}
 		  </ul>
 		</div>
 	</div>
-	<!-- {{{/each}}} -->
+	{{{/each}}}
 
 </div>
 
@@ -108,8 +111,10 @@
 			<select id="selectCategory" required>
 				<option value="" disabled>Categories</option>
 				<!-- {{{#each Category}}} -->
-			  	<option value="newCategory">New Category</option>
+				{{{#each Category}}}
+			  	<option value="newCategory">{{{this.name}}}</option>
 			  	<!-- {{{/each}}} -->
+			  	{{{/each}}}
 			</select>
 			<br><br>
 			<!--  -->

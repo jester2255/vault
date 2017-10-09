@@ -16,6 +16,9 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
   });
+  app.get("/main", function(req, res) {
+    res.render("index", )
+  })
 /*
   // cms route loads cms.html
   app.get("/cms", function(req, res) {
