@@ -25,6 +25,8 @@ $("#addCategory").on("click", function() {
 
 // GET
 //=====================================
+var Category = require("../../models/category.js");
+$.get()
 
 // UPDATE
 //=====================================
