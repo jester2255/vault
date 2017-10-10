@@ -24,6 +24,21 @@
 	</div>
 	<!-- LENT OUT TRUE FROM DB -->
 	<div class="row">
+		<div class="card" style="width: 70rem;">
+			<ul class="list-group list-group-flush">
+				{{{#each Item}}}
+					{{{#if this.lent_out}}}
+					<li class="list-group-item">
+						<div class="row">
+							<div class="col-3">
+								<p>{{{this.name}}}</p>
+							</div>
+						</div>
+					</li>
+					{{{/if}}}
+				{{{/each}}}
+			</ul>
+		</div>
 	</div>
 <!-- ========================================================== -->
 	<hr id="lineBreak">
