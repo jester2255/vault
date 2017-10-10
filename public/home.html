@@ -27,7 +27,21 @@
 
         <script>
                 function onSuccess(googleUser) {
+                    var email = googleUser.getBasicProfile().getEmail();
                     console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+                    console.log(JSON.stringify(googleUser.getBasicProfile().getEmail()));
+                    $.ajax({
+                        type: "post",
+                        url: "/main",
+                        data: {"email": email},
+                        Success: function(){console.log("Success")},
+                        dataType: "JSON"
+                    });
+                    // var sessionTimeout = 1; //hour
+                    // var loginDuration = new Date();
+                    // loginDuration.setTime(loginDuration.getTime()+(sessionTimeout*60*60*1000));
+                    // document.cookie = "VaultSession=Valid; "+loginDuration.toGMTString()+"; path=/";
+                    // location.href = "../testVault.html";
                 }
                 function onFailure(error) {
                     console.log(error);
