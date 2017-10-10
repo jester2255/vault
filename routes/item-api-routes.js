@@ -7,6 +7,11 @@ module.exports = function(app) {
         model: db.Transaction
         ,limit: 1
         ,order: [["transaction_date","DESC"]]
+        ,attributes:["id","transaction_date","due_date","type","item_condition","lendee","ItemId","UserId"]
+        }
+        ,{
+          model:db.Category
+          ,attributes:["name","id"]
         }]
     }).then(function(dbItem) {
       res.json(dbItem);
