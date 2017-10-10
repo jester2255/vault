@@ -5,6 +5,7 @@
 // Dependencies
 // =============================================================
 var path = require("path");
+var db = require("../models");
 
 // Routes
 // =============================================================
@@ -21,6 +22,11 @@ module.exports = function(app) {
   app.post("/main", function(req, res){
     // reciec=ves the email from our clients post
     console.log(req.body.email);
+    db.User.findOrCreate({
+      where: {username: req.body.email}
+    }).then(function(dbUser){
+      res.render("index",{});
+    });
     //check to see if email exsists
     //IF EXSISTS
       //render out handle bars page with user info
