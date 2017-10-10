@@ -33,6 +33,13 @@
 							<div class="col-3">
 								<p>{{{this.name}}}</p>
 							</div>
+							<div class="col">
+								<p>{{{this.lendee}}}</p>
+							</div>
+							<div class="col-2">
+								<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#returnItemModal">Return Item
+				    			</button>
+							</div>
 						</div>
 					</li>
 					{{{/if}}}
@@ -80,8 +87,9 @@
 		  {{{/each}}}
 		  </ul>
 		</div>
-	</div>
 	{{{/each}}}
+	</div>
+	
 
 </div>
 
@@ -127,7 +135,7 @@
 				<option value="" disabled>Categories</option>
 				<!-- {{{#each Category}}} -->
 				{{{#each Category}}}
-			  	<option value="newCategory">{{{this.name}}}</option>
+			  	<option value="{{{this.id}}}">{{{this.name}}}</option>
 			  	<!-- {{{/each}}} -->
 			  	{{{/each}}}
 			</select>
@@ -160,6 +168,8 @@
       <div class="modal-body">
       	<!-- item input -->
       	<form action="/lend" method="POST" id="lendItemForm">
+      		<input name="hiddenLendCategory" value="{{{this.name}}}">
+      		<input name="hiddenLendItem" value="{{{this.Item.name}}}">
       		<p>Enter the due date:<p>
       		<input type="text" name="dueDate" id="dueDate" placeholder=" Due Date...">
 			<p>Name of the person you are lending to:</p>
