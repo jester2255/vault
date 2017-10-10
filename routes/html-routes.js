@@ -17,7 +17,15 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
   });
   app.get("/main", function(req, res) {
-    res.render("index", )
+  })
+  app.post("/main", function(req, res){
+    // reciec=ves the email from our clients post
+    console.log(req.body.email);
+    //check to see if email exsists
+    //IF EXSISTS
+      //render out handle bars page with user info
+    //ELSE
+      //create a new entry and render out handle bars page 
   })
 /*
   // cms route loads cms.html
