@@ -1,10 +1,24 @@
 var db = require("../models");
 module.exports = function(app) {
   app.get("/api/items", function(req, res) {
-    db.Item.findAll({}).then(function(dbItem) {
+    db.Item.findAll({
+      where:{UserId: 1}
+      ,include: [{model: db.Transaction}]
+    }).then(function(dbItem) {
       res.json(dbItem);
     });
   });
+
+  // app.get("/api/items", function(req, res) {
+  //   db.Item.findAll({
+  //     where:{UserId: 1}
+  //     ,include: [{
+  //       model: db.Transaction
+  //     }]
+  //   }).then(function(dbItem) {
+  //     res.json(dbItem);
+  //   });
+  // });
 
   app.get("/api/items/:id", function(req, res) {
     db.Item.findOne({
