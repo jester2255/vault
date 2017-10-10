@@ -1,7 +1,20 @@
 var db = require("../models");
 module.exports = function(app) {
 	app.get("/api/transactions", function(req,res){
-		db.Transaction.findAll({}).then(function(dbTransaction){
+		db.Transaction.findAll({
+			include:[db.Item]
+			,order: [["transaction_date","DESC"]]
+		}).then(function(dbTransaction){
+			res.json(dbTransaction);
+		});
+	});
+
+	app.get("/api/transactions/:item", function(req,res){
+		db.Transaction.findAll({
+			include:[db.Item]
+			,order: [["transaction_date","DESC"]]
+			,where:{ItemId: req.params.item}
+		}).then(function(dbTransaction){
 			res.json(dbTransaction);
 		});
 	});
