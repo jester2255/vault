@@ -3,7 +3,16 @@ module.exports = function(app) {
   app.get("/api/items", function(req, res) {
     db.Item.findAll({
       where:{UserId: 1}
-      ,include: [{model: db.Transaction}]
+      ,include: [{
+        model: db.Transaction
+        ,limit: 1
+        ,order: [["transaction_date","DESC"]]
+        ,attributes:["id","transaction_date","due_date","type","item_condition","lendee","ItemId","UserId"]
+        }
+        ,{
+          model:db.Category
+          ,attributes:["name","id"]
+        }]
     }).then(function(dbItem) {
       res.json(dbItem);
     });
