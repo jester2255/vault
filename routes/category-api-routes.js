@@ -10,6 +10,8 @@ module.exports = function(app) {
 		db.Category.create({
 			name:req.body.name
 			,UserId: 1
-		}).then(function(dbCategory){});
+		}).then(function(dbCategory){
+			res.redirect("/main");
+		});
 	});
 }

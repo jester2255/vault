@@ -19,14 +19,25 @@ $("#addCategory").on("click", function() {
 	}
     // ajax post
     $.post("/api/categories", addCategory, function(data) {
-        console.log(data + "category posted!");
+        
     });
 });
 
 // GET
 //=====================================
-var Category = require("../../models/category.js");
-$.get()
+$("#addCategoryButton").on("click", function() {
+	var url = "/api/categories";
+	$.ajax({
+  		dataType: "json",
+  		type: "GET",
+  		url: url,
+  		data: Category,
+  		success: function(data) {
+  			console.log("Get category worked");
+  		}
+	});
+})
+
 
 // UPDATE
 //=====================================
