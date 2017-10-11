@@ -33,7 +33,7 @@
                     console.log(JSON.stringify(googleUser.getBasicProfile().getEmail()));
                     $.ajax({
                         type: "post",
-                        url: "/main",
+                        url: "/",
                         data: {"email": email},
                         Success: function(){console.log("Success")},
                         dataType: "JSON"
