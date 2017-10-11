@@ -2,7 +2,7 @@
 <nav class="navbar navbar-light bg-light">
   <span class="h1" class="navbar-brand mb-0">Open Vault</span>
   <!-- USERNAME FROM DB ? -->
-  <a href="#">Logout</a>
+  <a href="/signout" onclick="signOut();">Sign out</a>
 </nav>
 <br>
 <!-- Body -->
@@ -15,7 +15,7 @@
 		</div>
 		<div class="col-3">
 			<!-- Button add category -->
-			<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#addCategoryModal">Add Category
+			<button type="button" class="btn btn-outline-primary" id="addCategoryButton" data-toggle="modal" data-target="#addCategoryModal">Add Category
 			</button>
 			<!-- Button add item -->
 			<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addItemModal">Add to Vault
@@ -27,7 +27,7 @@
 	<div class="row">
 		<div class="card" style="width: 70rem;">
 			<ul class="list-group list-group-flush">
-				{{#each db.Item}}
+				{{#each Item}}
 					{{#if this.lent_out}}
 					<li class="list-group-item">
 						<div class="row">
@@ -35,7 +35,7 @@
 								<p>{{this.name}}</p>
 							</div>
 							<div class="col">
-								<p>{{this.lendee}}</p>
+								<p>{{this.Transactions.lendee}}</p>
 							</div>
 							<div class="col-2">
 								<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#returnItemModal">Return Item
@@ -56,7 +56,7 @@
 			<h3>Lend an Item:</h3>
 		</div>
 	</div>
-	{{#each db.Category}}
+	{{#each Category}}
 	<a data-toggle="collapse" data-target="{{this.id}}" href="{{this.id}}">
 							<!-- ^^^ change target and href -->
 	  	<h5>{{this.name}}</h5>
@@ -67,9 +67,9 @@
 		<div class="card" style="width: 70rem;">
 		  <ul class="list-group list-group-flush">
 
-		  {{#each this.Item}}
+		  {{#each }}
 
-		  	{{#unless this.Item.lent_out}}
+		  	{{#unless this.lent_out}}
 		    <li class="list-group-item">
 		    	<div class="row">
 			    	<div class="col-3">
