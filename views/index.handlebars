@@ -22,6 +22,7 @@
 			</button>
 		</div>
 	</div>
+	<br>
 	<!-- LENT OUT TRUE FROM DB -->
 	<div class="row">
 		<div class="card" style="width: 70rem;">
@@ -65,9 +66,9 @@
 		<!-- list each item in the category -->
 		<div class="card" style="width: 70rem;">
 		  <ul class="list-group list-group-flush">
-		  <!-- {{{#each this.Item?}}} -->
+
 		  {{#each this.Item}}
-		  	<!-- {{{#unless this.Item.lent_out}}} -->
+
 		  	{{#unless this.Item.lent_out}}
 		    <li class="list-group-item">
 		    	<div class="row">
@@ -106,7 +107,7 @@
       </div>
       <div class="modal-body">
       	<!-- item input -->
-      	<form action="/category" method="POST" id="newCategoryForm">
+      	<form action="/api/categories" method="POST" id="newCategoryForm">
 			<p>Enter the name of the category:</p>
 			<input type="text" name="newCategoryName" id="newCategoryName" placeholder=" Category Name..." required>
 			<br><hr>
@@ -133,10 +134,10 @@
       		<p>Please select a category:</p>
 			<select id="selectCategory" required>
 				<option value="" disabled>Categories</option>
-				<!-- {{{#each Category}}} -->
+
 				{{#each Category}}
 			  	<option value="{{this.id}}">{{this.name}}</option>
-			  	<!-- {{{/each}}} -->
+			  
 			  	{{/each}}
 			</select>
 			<br><br>

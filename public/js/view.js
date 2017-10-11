@@ -8,7 +8,7 @@ $("#addItem").on("click", function() {
 		category_id: $("#selectCategory").val()
 	}
     // ajax post
-    $.post("/addItem", addItem, function(data) {
+    $.post("/api/item", addItem, function(data) {
         console.log(data + "item posted!");
     });
 });
@@ -18,7 +18,7 @@ $("#addCategory").on("click", function() {
 		name: $("#newCategoryName").val().trim()
 	}
     // ajax post
-    $.post("/addCategory", addCategory, function(data) {
+    $.post("/api/categories", addCategory, function(data) {
         console.log(data + "category posted!");
     });
 });

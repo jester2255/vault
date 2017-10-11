@@ -6,6 +6,7 @@
 // =============================================================
 var path = require("path");
 var db = require("../models");
+var express = require("express");
 
 // Routes
 // =============================================================
@@ -15,16 +16,18 @@ module.exports = function(app) {
 
   // index route loads view.html
   app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../testVault.html"));
+    res.sendFile(path.join(__dirname, "../public/home.html"));
   });
   app.get("/main", function(req, res) {
+    res.render("index", {});
   })
   app.post("/main", function(req, res){
     // reciec=ves the email from our clients post
-    console.log(req.body.email);
+    console.log("email to add = " + req.body.email);
     db.User.findOrCreate({
       where: {username: req.body.email}
     }).then(function(dbUser){
+      console.log("dbUser: " + dbUser);
       res.render("index",{});
     });
     //check to see if email exsists
