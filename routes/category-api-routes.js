@@ -9,6 +9,7 @@ module.exports = function(app) {
 	app.post("/api/categories", function(req,res){
 		db.Category.create({
 			name:req.name
+			,userId: "temporary"
 		}).then(function(dbCategory){});
 	});
 }
