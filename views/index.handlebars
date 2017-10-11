@@ -26,15 +26,15 @@
 	<div class="row">
 		<div class="card" style="width: 70rem;">
 			<ul class="list-group list-group-flush">
-				{{{#each Item}}}
-					{{{#if this.lent_out}}}
+				{{#each Item}}
+					{{#if this.lent_out}}
 					<li class="list-group-item">
 						<div class="row">
 							<div class="col-3">
-								<p>{{{this.name}}}</p>
+								<p>{{this.name}}</p>
 							</div>
 							<div class="col">
-								<p>{{{this.lendee}}}</p>
+								<p>{{this.lendee}}</p>
 							</div>
 							<div class="col-2">
 								<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#returnItemModal">Return Item
@@ -42,8 +42,8 @@
 							</div>
 						</div>
 					</li>
-					{{{/if}}}
-				{{{/each}}}
+					{{/if}}
+				{{/each}}
 			</ul>
 		</div>
 	</div>
@@ -55,27 +55,27 @@
 			<h3>Lend an Item:</h3>
 		</div>
 	</div>
-	{{{#each Category}}}
-	<a data-toggle="collapse" data-target="{{{this.id}}}" href="{{{this.id}}}">
+	{{#each Category}}
+	<a data-toggle="collapse" data-target="{{this.id}}" href="{{this.id}}">
 							<!-- ^^^ change target and href -->
-	  	<h5>{{{this.name}}}</h5>
+	  	<h5>{{this.name}}</h5>
 	</a>
-	<div class="collapse" id="{{{this.id}}}">
+	<div class="collapse" id="{{this.id}}">
 						<!-- ^^^ change id -->
 		<!-- list each item in the category -->
 		<div class="card" style="width: 70rem;">
 		  <ul class="list-group list-group-flush">
 		  <!-- {{{#each this.Item?}}} -->
-		  {{{#each this.Item}}}
+		  {{#each this.Item}}
 		  	<!-- {{{#unless this.Item.lent_out}}} -->
-		  	{{{#unless this.Item.lent_out}}}
+		  	{{#unless this.Item.lent_out}}
 		    <li class="list-group-item">
 		    	<div class="row">
 			    	<div class="col-3">
-			    		<p>{{{this.Item.name}}}</p>
+			    		<p>{{this.Item.name}}</p>
 			    	</div>
 			    	<div class="col">
-			    		<p>{{{this.Item.description}}}</p>
+			    		<p>{{this.Item.description}}</p>
 			    	</div>
 			    	<div class="col-2">
 				    	<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#lendItemModal">Lend Item
@@ -83,11 +83,11 @@
 				    </div>
 				</div>
 		    </li>
-		    {{{/unless}}}
-		  {{{/each}}}
+		    {{/unless}}
+		  {{/each}}
 		  </ul>
 		</div>
-	{{{/each}}}
+	{{/each}}
 	</div>
 	
 
@@ -134,10 +134,10 @@
 			<select id="selectCategory" required>
 				<option value="" disabled>Categories</option>
 				<!-- {{{#each Category}}} -->
-				{{{#each Category}}}
-			  	<option value="{{{this.id}}}">{{{this.name}}}</option>
+				{{#each Category}}
+			  	<option value="{{this.id}}">{{this.name}}</option>
 			  	<!-- {{{/each}}} -->
-			  	{{{/each}}}
+			  	{{/each}}
 			</select>
 			<br><br>
 			<!--  -->
@@ -168,8 +168,8 @@
       <div class="modal-body">
       	<!-- item input -->
       	<form action="/lend" method="POST" id="lendItemForm">
-      		<input name="hiddenLendCategory" value="{{{this.name}}}">
-      		<input name="hiddenLendItem" value="{{{this.Item.name}}}">
+      		<input name="hiddenLendCategory" value="{{this.name}}">
+      		<input name="hiddenLendItem" value="{{this.Item.name}}">
       		<p>Enter the due date:<p>
       		<input type="text" name="dueDate" id="dueDate" placeholder=" Due Date...">
 			<p>Name of the person you are lending to:</p>
