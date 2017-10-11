@@ -18,6 +18,9 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
   });
+  app.get("/signout", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/signout.html"));
+  })
   app.get("/main", function(req, res) {
     res.render("index", {});
   })
