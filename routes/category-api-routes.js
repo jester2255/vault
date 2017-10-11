@@ -9,7 +9,6 @@ module.exports = function(app) {
 	app.post("/api/categories", function(req,res){
 		db.Category.create({
 			name:req.name
-		});
-	}).then(function(dbCategory){
+		}).then(function(dbCategory){});
 	});
 }
