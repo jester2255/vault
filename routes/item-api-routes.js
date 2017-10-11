@@ -1,5 +1,7 @@
 var db = require("../models");
 module.exports = function(app) {
+
+  //This default route pulls all Items from the items table with the category, and most recent transaction.
   app.get("/api/items", function(req, res) {
     db.Item.findAll({
       where:{UserId: 1}
@@ -18,22 +20,20 @@ module.exports = function(app) {
     });
   });
 
-  // app.get("/api/items", function(req, res) {
-  //   db.Item.findAll({
-  //     where:{UserId: 1}
-  //     ,include: [{
-  //       model: db.Transaction
-  //     }]
-  //   }).then(function(dbItem) {
-  //     res.json(dbItem);
-  //   });
-  // });
-
+  //this route pulls one Item from the items table with the category, and most recent transaction.
   app.get("/api/items/:id", function(req, res) {
     db.Item.findOne({
-      where: {
-        id: req.params.id
-      },
+      where:{UserId: 1, id:req.params.id}
+      ,include: [{
+        model: db.Transaction
+        ,limit: 1
+        ,order: [["transaction_date","DESC"]]
+        ,attributes:["id","transaction_date","due_date","type","item_condition","lendee","ItemId","UserId"]
+        }
+        ,{
+          model:db.Category
+          ,attributes:["name","id"]
+        }]
     }).then(function(dbItem) {
       res.json(dbItem);
     });
