@@ -6,10 +6,10 @@ module.exports = function(app) {
 		});
 	});
 
-	app.post("/api/categories", function(req,res){
+	app.post("/api/categories", function(req, res){
 		db.Category.create({
-			name:req.name
-			,userId: "temporary"
+			name:req.body.name
+			,UserId: 1
 		}).then(function(dbCategory){});
 	});
 }
