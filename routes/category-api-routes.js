@@ -5,4 +5,11 @@ module.exports = function(app) {
 			res.json(dbCategory);
 		});
 	});
+
+	app.post("/api/categories", function(req,res){
+		db.Category.create({
+			name:req.name
+		});
+	}).then(function(dbCategory){
+	});
 }

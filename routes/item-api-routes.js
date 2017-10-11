@@ -20,7 +20,7 @@ module.exports = function(app) {
     });
   });
 
-
+  //this route pulls one Item from the items table with the category, and most recent transaction.
   app.get("/api/items/:id", function(req, res) {
     db.Item.findOne({
       where:{UserId: 1, id:req.params.id}
