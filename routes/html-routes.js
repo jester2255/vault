@@ -20,10 +20,38 @@ module.exports = function(app) {
   });
   app.get("/signout", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/signout.html"));
-  })
-  app.get("/main", function(req, res) {
-    res.render("index", {});
-  })
+  });
+
+//creates handlebars object with items and categories for use in rendering page. 
+app.get("/main", function(req, res) {
+  var handlebarsObj = {
+    categories: {}
+    ,items: {}
+  };
+
+  db.Category.findAll({}).then(function(dbCategory){
+    handlebarsObj.categories = dbCategory;
+    db.Item.findAll({
+      where:{UserId: 1}
+      ,include: [{
+        model: db.Transaction
+        ,limit: 1
+        ,order: [["transaction_date","DESC"]]
+        ,attributes:["id","transaction_date","due_date","type","item_condition","lendee","ItemId","UserId"]
+        }
+        ,{
+          model:db.Category
+          ,attributes:["name","id"]
+        }]
+    }).then(function(dbItem){
+      handlebarsObj.items = dbItem;
+      console.log("****************");
+      console.log(JSON.stringify(handlebarsObj));
+      res.render("testing", handlebarsObj);
+    });
+  });
+});
+
   app.post("/main", function(req, res){
     // reciec=ves the email from our clients post
     console.log("email to add = " + req.body.email);
