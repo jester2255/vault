@@ -27,7 +27,7 @@
 	<div class="row">
 		<div class="card" style="width: 70rem;">
 			<ul class="list-group list-group-flush">
-				{{#each item}}
+				{{#each items}}
 					{{#if this.lent_out}}
 					<li class="list-group-item">
 						<div class="row">
@@ -35,7 +35,7 @@
 								<p>db{{this.name}}</p>
 							</div>
 							<div class="col">
-								<p>{{this.Transactions[0].lendee}}</p>
+								<p>{{this.Transactions.0.lendee}}</p>
 							</div>
 							<div class="col-2">
 								<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#returnItemModal">Return Item
@@ -61,22 +61,22 @@
 							<!-- ^^^ change target and href -->
 	  	<h5>{{this.name}}</h5>
 	</a>
+	{{/each}}
 	<div class="collapse" id="{{this.id}}">
 						<!-- ^^^ change id -->
 		<!-- list each item in the category -->
 		<div class="card" style="width: 70rem;">
 		  <ul class="list-group list-group-flush">
 
-		  {{#each }}
-
+		  {{#each items}}
 		  	{{#unless this.lent_out}}
 		    <li class="list-group-item">
 		    	<div class="row">
 			    	<div class="col-3">
-			    		<p>{{this.Item.name}}</p>
+			    		<p>{{this.name}}</p>
 			    	</div>
 			    	<div class="col">
-			    		<p>{{this.Item.description}}</p>
+			    		<p>{{this.description}}</p>
 			    	</div>
 			    	<div class="col-2">
 				    	<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#lendItemModal">Lend Item
@@ -88,7 +88,6 @@
 		  {{/each}}
 		  </ul>
 		</div>
-	{{/each}}
 	</div>
 	
 
@@ -130,12 +129,12 @@
       </div>
       <div class="modal-body">
       	<!-- item input -->
-      	<form action="/add" method="POST" id="newItemForm">
+      	<form action="/api/item" method="POST" id="newItemForm">
       		<p>Please select a category:</p>
 			<select id="selectCategory" required>
 				<option value="" disabled>Categories</option>
 
-				{{#each Category}}
+				{{#each categories}}
 			  	<option value="{{this.name}}">{{this.name}}</option>
 			  
 			  	{{/each}}
@@ -169,8 +168,10 @@
       <div class="modal-body">
       	<!-- item input -->
       	<form action="/lend" method="POST" id="lendItemForm">
-      		<input name="hiddenLendCategory" value="{{this.name}}">
-      		<input name="hiddenLendItem" value="{{this.Item.name}}">
+      		{{#each items}}
+      		<input name="hiddenLendCategory" value="{{this.CategoryId}}">
+      		<input name="hiddenLendItem" value="{{this.name}}">
+      		{{/each}}
       		<p>Enter the due date:<p>
       		<input type="text" name="dueDate" id="dueDate" placeholder=" Due Date...">
 			<p>Name of the person you are lending to:</p>

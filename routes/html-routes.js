@@ -47,7 +47,7 @@ app.get("/main", function(req, res) {
       handlebarsObj.items = dbItem;
       console.log("****************");
       console.log(JSON.stringify(handlebarsObj));
-      res.render("testing", handlebarsObj);
+      res.render("index", handlebarsObj);
     });
   });
 });
