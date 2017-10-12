@@ -31,6 +31,7 @@ module.exports = function(){
   	,modifiedby_user_id: "root"
   	,UserId:1
   	,CategoryId:1
+    ,lent_out: true
   	,description: "DVD of the movie 'Oceans 13'"
   }).then(function(createResult){
   	console.log("created an Item");
