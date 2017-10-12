@@ -1,0 +1,10 @@
+{{#each items}}
+	<p>item: {{this.name}}</p>
+	<p>lent out? {{this.lent_out}}</p>
+	<p>last transaction type: {{this.Transactions.0.type}}</p>
+
+{{/each}}
+<hr>
+{{#each categories}}
+	<p>category: {{this.name}}</p>
+{{/each}}
