@@ -5,11 +5,12 @@ $("#addItem").on("click", function() {
 		name: $("#newItemName").val().trim(),
 		description: $("#newItemDescribe").val().trim(),
 		lent_out: false,
-		category_id: $("#selectCategory").val()
+		CategoryId: $("#selectCategory").val(),
+		UserId: 1
 	}
     // ajax post
     $.post("/api/item", addItem, function(data) {
-        console.log(data + "item posted!");
+  
     });
 });
 
